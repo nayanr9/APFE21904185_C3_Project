@@ -2,6 +2,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -60,4 +62,20 @@ class RestaurantTest {
                 () -> restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //<<<<<<<<<<<<<<<<<<<<<<<Order Cost>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    @Test
+    public void should_return_sum_of_the_selected_menu_items_cost() {
+        List<String> selectedItems = new ArrayList<>();
+        selectedItems.add("Sweet corn soup");
+        selectedItems.add("Ice Cream");
+        assertEquals(119+150, restaurant.selectedItemsCost(selectedItems));
+    }
+
+    @Test
+    public void should_return_0_when_no_item_is_selected() {
+        List<String> selectedItems = new ArrayList<>();
+        assertEquals(0, restaurant.selectedItemsCost(selectedItems));
+    }
+    //<<<<<<<<<<<<<<<<<<<<<<<Order Cost>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
